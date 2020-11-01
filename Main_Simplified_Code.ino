@@ -38,6 +38,8 @@ Project published under CC-BY-NC-SA license https://creativecommons.org/licenses
 #define slowSpeedMultiplier 50
 //don't change this unless you want to change the fast speed
 #define fastSpeedMultiplier 100
+//modulus test threshold. Used to determine when to change speed to fast.
+#define modulusThreshold 30000
 //reading attempts to be taken on each reading; the average of the attempts will be displayed. Depends on your load cell amplifier's configuration. 10hz - 1 attempt, 80hz - 8 attempts.
 #define readAttempts 1
  
@@ -295,6 +297,16 @@ void loop() {
       #endif
     }
     lastMeasurement = micros();
+  }
+
+  if (mode == 5 && testTime >= modulusThreshold && stepperSpeed != fastSpeed)
+  {
+    Serial.println(F("THRESHOLD REACHED"));
+    stepperSpeed = fastSpeed;
+    stepperDir = 0;
+    multiplier = 1;
+    stepperStatus = 1;
+    sendCommand();
   }
 }
  
