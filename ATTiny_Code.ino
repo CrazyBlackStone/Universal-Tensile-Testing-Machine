@@ -6,7 +6,7 @@ Project published under CC-BY-NC-SA license https://creativecommons.org/licenses
 Code published under GNU General Public V3 https://www.gnu.org/licenses/gpl-3.0.en.html
 */
 
-//Need TinWireS library https://github.com/nadavmatalon/TinyWireS
+//Need TinWireS library https://github.com/rambo/TinyWire
 #include <TinyWireS.h>
 
 //pin definitions
